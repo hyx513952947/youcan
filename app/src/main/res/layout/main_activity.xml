@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<top.huangguaniu.youcan.ui.main.views.DragRightFrameLayout
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="#eaeaea"
+    android:id="@+id/layout_drag"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <top.huangguaniu.youcan.ui.main.views.MenuLayout
+        android:id="@+id/layout_menu"
+        android:orientation="vertical"
+        android:clipChildren="false"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content">
+        <top.huangguaniu.youcan.ui.main.views.MenuButton
+            android:elevation="5dp"
+            android:id="@+id/button_menu_closed"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:src="@drawable/icon_close_menu"
+            android:layout_gravity="center_horizontal"
+            android:layout_width="30dp"
+            android:layout_height="30dp" />
+        <top.huangguaniu.youcan.ui.main.views.DragMenuItemView
+            android:elevation="1dp"
+            android:layout_width="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            app:title="笔记本"
+            android:textSize="12sp"
+            app:textColor="#000000"
+            app:selectDrawable="@drawable/icon_note_selected"
+            app:unSelectDrawable="@drawable/icon_note_unselected"
+            android:background="@drawable/selector_menu_item"
+            android:layout_height="100dp" />
+        <top.huangguaniu.youcan.ui.main.views.DragMenuItemView
+            android:elevation="1dp"
+            android:layout_width="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            app:title="归档"
+            android:textSize="12sp"
+            app:textColor="#000000"
+            app:selectDrawable="@drawable/icon_gd_selected"
+            app:unSelectDrawable="@drawable/icon_dg_unselected"
+            android:background="@drawable/selector_menu_item"
+            android:layout_height="100dp" />
+        <top.huangguaniu.youcan.ui.main.views.DragMenuItemView
+            android:elevation="1dp"
+            android:layout_width="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            app:title="标签"
+            android:textSize="12sp"
+            app:textColor="#000000"
+            app:selectDrawable="@drawable/icon_label_selected"
+            app:unSelectDrawable="@drawable/icon_label_unselected"
+            android:background="@drawable/selector_menu_item"
+            android:layout_height="100dp" />
+        <top.huangguaniu.youcan.ui.main.views.DragMenuItemView
+            android:elevation="1dp"
+            android:layout_width="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            app:title="地标"
+            android:textSize="12sp"
+            app:textColor="#000000"
+            app:selectDrawable="@drawable/icon_map_selected"
+            app:unSelectDrawable="@drawable/icon_map_unselected"
+            android:background="@drawable/selector_menu_item"
+            android:layout_height="100dp" />
+        <top.huangguaniu.youcan.ui.main.views.DragMenuItemView
+            android:elevation="1dp"
+            android:layout_width="60dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginLeft="20dp"
+            app:title="个人设置"
+            android:textSize="12sp"
+            app:textColor="#000000"
+            app:selectDrawable="@drawable/icon_set_selected"
+            app:unSelectDrawable="@drawable/icon_set_unselected"
+            android:background="@drawable/selector_menu_item"
+            android:layout_height="100dp" />
+    </top.huangguaniu.youcan.ui.main.views.MenuLayout>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:background="#eaeaea"
+        android:layout_height="match_parent">
+
+        <View
+            android:elevation="1dp"
+            android:layout_width="0.5dp"
+            android:layout_height="400dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="#e525ccfb"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <fragment
+            android:layout_marginStart="8dp"
+            android:id="@+id/container"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:defaultNavHost="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:navGraph="@navigation/main_navogation" />
+    </android.support.constraint.ConstraintLayout>
+</top.huangguaniu.youcan.ui.main.views.DragRightFrameLayout>
+
