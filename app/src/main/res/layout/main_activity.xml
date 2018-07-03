@@ -2,8 +2,6 @@
 <top.huangguaniu.youcan.ui.main.views.DragRightFrameLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:background="#eaeaea"
     android:id="@+id/layout_drag"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -91,7 +89,6 @@
     </top.huangguaniu.youcan.ui.main.views.MenuLayout>
     <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:background="#eaeaea"
         android:layout_height="match_parent">
 
         <View
