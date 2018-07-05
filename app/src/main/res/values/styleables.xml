@@ -18,4 +18,10 @@
     <declare-styleable name="RoundImageView">
         <attr name="android:src" format="reference"/>
     </declare-styleable>
+    <declare-styleable name="PopMenuButton">
+        <attr name="src_open" format="reference"/>
+        <attr name="src_default" format="reference"/>
+        <attr name="color_default" format="reference"/>
+        <attr name="color_open" format="reference"/>
+    </declare-styleable>
 </resources>
