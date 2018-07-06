@@ -11,6 +11,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -37,11 +40,14 @@ public class HomeFragment extends DaggerFragment {
     AppCompatImageView imageViewNotify;
     @BindView(R.id.button_note)
     PopMenuButton buttonNote;
+    @BindView(R.id.imageView_more)
+    AppCompatImageView imageViewMore;
+    @BindView(R.id.imageView_search)
+    AppCompatImageView imageViewSearch;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         unbinder = ButterKnife.bind(this, view);
         return view;
@@ -69,16 +75,24 @@ public class HomeFragment extends DaggerFragment {
         unbinder.unbind();
     }
 
-
-    @OnClick({R.id.imageView_head, R.id.imageView_notify, R.id.button_note})
+    @OnClick({R.id.imageView_head, R.id.imageView_notify})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.imageView_head:
                 break;
             case R.id.imageView_notify:
                 break;
-            case R.id.button_note:
-                break;
+        }
+    }
+
+    @OnClick(R.id.button_note)
+    public void onViewClicked() {
+        Logger.i("111111111111");
+        NavController  controller = NavHostFragment.findNavController(this);
+        if (null == controller){
+            Logger.i("12321312");
+        }else {
+            controller.navigate(R.id.action_fragment_home_to_fragment_diary);
         }
     }
 }

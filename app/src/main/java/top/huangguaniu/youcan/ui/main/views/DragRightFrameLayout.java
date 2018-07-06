@@ -93,6 +93,7 @@ public class DragRightFrameLayout extends FrameLayout {
                 childTop = parentTop + layoutParams.topMargin;
                 childRight = child.getMeasuredWidth();
                 childBottom = child.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin - parentBottom;
+                log(childLeft+"--"+childTop+"--"+childRight+"--"+childBottom);
             }
             child.layout(childLeft, childTop, childRight, childBottom);
         }
@@ -283,7 +284,6 @@ public class DragRightFrameLayout extends FrameLayout {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        log("宽高：" + widthSize + "--" + heightSize);
         int childCount = getChildCount();
         if (childCount < 2) {
             throw new NullPointerException("视图的子view个数不对！！！：当前个数：" + childCount);
@@ -321,7 +321,6 @@ public class DragRightFrameLayout extends FrameLayout {
         }
 
         reqMaxWidth = Math.max(reqMaxWidth, widthSize) + sizeMenuWidth;
-        log("计算后的宽高：" + reqMaxWidth + "--" + reqMaxHeight);
         setMeasuredDimension(reqMaxWidth, reqMaxHeight);
     }
 

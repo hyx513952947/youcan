@@ -14,6 +14,7 @@ import top.huangguaniu.youcan.R;
 
 /**
  * A simple {@link Fragment} subclass.
+ * @author css
  */
 public class DiaryEditorFragment extends dagger.android.support.DaggerFragment {
 

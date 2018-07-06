@@ -44,7 +44,7 @@ public class PopMenuButton extends View {
         src = BitmapFactory.decodeResource(getResources(),srcId);
         srcOpenId = array.getResourceId(R.styleable.PopMenuButton_src_open,R.drawable.icon_note_add_selected);
         srcOpen =BitmapFactory.decodeResource(getResources(),srcOpenId);
-        color = array.getColor(R.styleable.PopMenuButton_color_default,Color.RED);
+        color = array.getColor(R.styleable.PopMenuButton_color_default,Color.parseColor("#f900e0d9"));
         colorOpen = array.getColor(R.styleable.PopMenuButton_color_open,Color.BLUE);
         array.recycle();
         mPaint = new Paint(Paint.ANTI_ALIAS_FLAG);

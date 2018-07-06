@@ -56,7 +56,7 @@ public class MenuLayout extends LinearLayout implements DragRightFrameLayout.OnM
         this(context, attrs);
     }
 
-    private float offsetScale = 0.4f;
+    private float offsetScale = 0.6f;
 
     @Override
     public void onOffset(float offset) {

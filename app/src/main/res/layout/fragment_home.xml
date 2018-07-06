@@ -5,20 +5,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:clipChildren="false"
+    android:background="#929292"
     android:layout_height="match_parent">
     <RelativeLayout
+        android:background="#ffffff"
         app:layout_behavior="top.huangguaniu.youcan.ui.main.views.behaviors.HomeHeadBehavior"
-        android:padding="8dp"
-        android:background="#00d2b3"
+        android:paddingTop="8dp"
+        android:elevation="3dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="60dp">
 
         <android.support.v7.widget.AppCompatImageView
             android:id="@+id/imageView_head"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             />

@@ -13,8 +13,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="30" />
-                            <option name="y" value="30" />
+                            <option name="x" value="105" />
+                            <option name="y" value="-13" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -25,30 +25,13 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="300" />
-                            <option name="y" value="30" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
-                    </value>
-                  </entry>
-                  <entry key="fragment_main">
-                    <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="-340" />
-                            <option name="y" value="25" />
+                            <option name="x" value="-357" />
+                            <option name="y" value="-3" />
                           </Point>
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="action_fragment_main_to_fragment_diary">
-                              <value>
-                                <LayoutPositions />
-                              </value>
-                            </entry>
-                            <entry key="action_fragment_main_to_fragment_home">
+                            <entry key="action_fragment_home_to_fragment_diary">
                               <value>
                                 <LayoutPositions />
                               </value>

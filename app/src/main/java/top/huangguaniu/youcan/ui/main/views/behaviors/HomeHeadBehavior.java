@@ -1,6 +1,7 @@
 package top.huangguaniu.youcan.ui.main.views.behaviors;
 
 import android.content.Context;
+import android.support.annotation.NonNull;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.widget.NestedScrollView;
 import android.util.AttributeSet;
@@ -40,4 +41,10 @@ public class HomeHeadBehavior extends CoordinatorLayout.Behavior<RelativeLayout>
         return true;
     }
 
+    @Override
+    public void onNestedPreScroll(@NonNull CoordinatorLayout coordinatorLayout, @NonNull RelativeLayout child,
+                                  @NonNull View target, int dx, int dy, @NonNull int[] consumed, int type) {
+        super.onNestedPreScroll(coordinatorLayout, child, target, dx, dy, consumed, type);
+    }
 }
+
