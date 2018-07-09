@@ -20,5 +20,4 @@
         android:id="@+id/fragment_diary"
         android:name="top.huangguaniu.youcan.ui.main.DiaryEditorFragment">
     </fragment>
-
 </navigation>

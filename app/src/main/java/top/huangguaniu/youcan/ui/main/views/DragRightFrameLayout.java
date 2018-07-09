@@ -90,8 +90,8 @@ public class DragRightFrameLayout extends FrameLayout {
                 childTop = parentTop + layoutParams.topMargin;
                 childRight = child.getMeasuredWidth();
                 childBottom = child.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin - parentBottom;
-                log(childLeft+"--"+childTop+"--"+childRight+"--"+childBottom);
             }
+            Logger.i("绘制的左上右下："+childLeft+"-"+childTop+"-"+childRight+"-"+childBottom);
             child.layout(childLeft, childTop, childRight, childBottom);
         }
     }

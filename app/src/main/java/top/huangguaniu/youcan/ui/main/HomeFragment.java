@@ -87,7 +87,6 @@ public class HomeFragment extends DaggerFragment {
 
     @OnClick(R.id.button_note)
     public void onViewClicked() {
-        Logger.i("111111111111");
         NavController  controller = NavHostFragment.findNavController(this);
         controller.navigate(R.id.action_fragment_home_to_fragment_diary);
     }

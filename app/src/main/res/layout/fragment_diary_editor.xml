@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -44,9 +45,86 @@
         android:id="@+id/view2"
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:background="#f9a4a4a4"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_input_title" />
 
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:background="#f8f3f3f3"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+        <ImageView
+            android:src="@drawable/icon_image"
+            android:id="@+id/imageView_image"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="22dp" />
+        <View
+            android:background="#9d9d9d"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"/>
+        <ImageView
+            android:id="@+id/imageView_textSize"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/selector_word"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="22dp" />
+        <View
+            android:background="#9d9d9d"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"/>
+        <ImageView
+            android:id="@+id/imageView_draw"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_draw"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="22dp" />
+        <View
+            android:background="#9d9d9d"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"/>
+        <ImageView
+            android:id="@+id/imageView_voice"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_voice"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="22dp" />
+    </LinearLayout>
+    <LinearLayout
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+        <android.support.v7.widget.AppCompatEditText
+            android:lineSpacingExtra="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="8dp"
+            android:gravity="start"
+            android:layout_marginTop="8dp"
+            android:background="@null"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

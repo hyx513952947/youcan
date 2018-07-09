@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.draw.DrawViewActivity">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+    </LinearLayout>
+    <com.byox.drawview.views.DrawView
+        android:id="@+id/draw_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:dv_draw_alpha="255"
+        app:dv_draw_anti_alias="true"
+        app:dv_draw_color="#1f0000"
+        app:dv_draw_corners="round"
+        app:dv_draw_dither="true"
+        app:dv_draw_enable_zoom="true"
+        app:dv_draw_font_family="default_font"
+        app:dv_draw_font_size="12"
+        app:dv_draw_max_zoom_factor="8"
+        app:dv_draw_mode="draw"
+        app:dv_draw_style="stroke"
+        app:dv_draw_tool="pen"
+        app:dv_draw_width="4"
+        app:dv_draw_zoomregion_maxscale="5"
+        app:dv_draw_zoomregion_minscale="2"
+        app:dv_draw_zoomregion_scale="4"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_gravity="center_vertical"
+        android:background="#f8f3f3f3"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent">
+        <ImageView
+            android:src="@drawable/icon_pen_attrs"
+            android:id="@+id/imageView_attrs"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_gravity="center_vertical"
+            android:layout_height="22dp" />
+        <View
+            android:background="#9d9d9d"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"/>
+        <ImageView
+            android:id="@+id/imageView_round"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/icon_round"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="22dp" />
+        <View
+            android:background="#9d9d9d"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"/>
+        <ImageView
+            android:id="@+id/imageView_eraser"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/selector_draw_mode"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="22dp" />
+        <View
+            android:background="#9d9d9d"
+            android:layout_gravity="center_vertical"
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"/>
+        <ImageView
+            android:id="@+id/imageView_undo"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/selector_undo"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="22dp" />
+        <View
+            android:background="#9d9d9d"
+            android:layout_gravity="center_vertical"
+            android:layout_width="1dp"
+            android:layout_height="1dp"/>
+        <ImageView
+            android:id="@+id/imageView_redo"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/selector_redo"
+            android:layout_weight="0.5"
+            android:layout_width="0dp"
+            android:layout_height="22dp" />
+    </LinearLayout>
+</android.support.constraint.ConstraintLayout>
