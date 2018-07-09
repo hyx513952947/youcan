@@ -1,12 +1,14 @@
 package top.huangguaniu.youcan.ui.main.draw;
 
+import android.content.Intent;
 import android.graphics.Paint;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.byox.drawview.enums.DrawingCapture;
 import com.byox.drawview.enums.DrawingMode;
 import com.byox.drawview.enums.DrawingTool;
 import com.byox.drawview.views.DrawView;
@@ -16,6 +18,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.support.DaggerAppCompatActivity;
 import top.huangguaniu.youcan.R;
+import top.huangguaniu.youcan.ui.main.DiaryEditorFragment;
 import top.huangguaniu.youcan.ui.main.draw.dialogs.DrawAttribsDialog;
 import top.huangguaniu.youcan.ui.main.draw.dialogs.DrawSelectShapeDialog;
 import top.huangguaniu.youcan.ui.main.draw.dialogs.RequestTextDialog;
@@ -35,6 +38,10 @@ public class DrawViewActivity extends DaggerAppCompatActivity {
     ImageView imageViewEraser;
     @BindView(R.id.linearLayout)
     LinearLayout linearLayout;
+    @BindView(R.id.imageView)
+    ImageView imageView;
+    @BindView(R.id.imageView_save)
+    ImageView imageViewSave;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -142,7 +149,7 @@ public class DrawViewActivity extends DaggerAppCompatActivity {
         selectShapeDialog.setOnChoiceDialogListener(new DrawSelectShapeDialog.OnChoiceDialogListener() {
             @Override
             public void onChoiceSelected(int position) {
-                imageViewEraser.setImageLevel(position*10);
+                imageViewEraser.setImageLevel(position * 10);
                 drawView.setDrawingMode(DrawingMode.values()[position]);
             }
         });
@@ -162,6 +169,42 @@ public class DrawViewActivity extends DaggerAppCompatActivity {
         if (drawView.canRedo()) {
             drawView.redo();
             canUndoRedo();
+        }
+    }
+
+    @OnClick({R.id.imageView, R.id.imageView_save})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.imageView:
+                finish();
+                break;
+            case R.id.imageView_save:
+                Object[] objects = drawView.createCapture(DrawingCapture.BYTES);
+                Intent intent = getIntent();
+                intent.putExtra("draw", (byte[]) objects[0]);
+                setResult(DiaryEditorFragment.CODE_DRAW_VIEW_RESULT,intent);
+                finish();
+                break;
+        }
+    }
+
+    @OnClick({R.id.view_color0, R.id.view_color1, R.id.view_color2, R.id.view_color3, R.id.view_color4, R.id.view_color5, R.id.view_color6})
+    public void onColorClicked(View view) {
+        switch (view.getId()) {
+            case R.id.view_color0:
+                break;
+            case R.id.view_color1:
+                break;
+            case R.id.view_color2:
+                break;
+            case R.id.view_color3:
+                break;
+            case R.id.view_color4:
+                break;
+            case R.id.view_color5:
+                break;
+            case R.id.view_color6:
+                break;
         }
     }
 }

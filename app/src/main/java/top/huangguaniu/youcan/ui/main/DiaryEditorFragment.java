@@ -34,6 +34,7 @@ import static android.icu.text.DateTimePatternGenerator.PatternInfo.OK;
 public class DiaryEditorFragment extends DaggerFragment {
 
     public static int CODE_DRAW_VIEW_REQUEST = 241;
+    public static int CODE_DRAW_VIEW_RESULT = 240;
     Unbinder unbinder;
 
     @Override
@@ -86,8 +87,8 @@ public class DiaryEditorFragment extends DaggerFragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == CODE_DRAW_VIEW_REQUEST && null != data){
-            Logger.i("有结果咯？？？："+data.getData().toString());
+        if (requestCode == CODE_DRAW_VIEW_REQUEST && resultCode == CODE_DRAW_VIEW_RESULT){
+            Logger.i("有结果咯？？？："+data.getByteArrayExtra("draw"));
         }
     }
 

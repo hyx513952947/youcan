@@ -6,28 +6,78 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.draw.DrawViewActivity">
 
-    <LinearLayout
-        android:layout_width="281dp"
-        android:layout_height="30dp"
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
         android:layout_marginStart="8dp"
-        android:background="@drawable/shape_color"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toStartOf="@+id/imageView_save"
+        android:layout_marginTop="11dp"
+        android:src="@mipmap/icon_back"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />I
     <ImageView
         android:id="@+id/imageView_save"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_width="25dp"
+        android:layout_height="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="16dp"
         android:src="@drawable/icon_save"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="16dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toStartOf="@+id/imageView_save"
+        app:layout_constraintStart_toEndOf="@+id/imageView"
+        app:layout_constraintTop_toTopOf="parent">
+        <View
+            android:id="@+id/view_color0"
+            android:background="#ff0000"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:id="@+id/view_color1"
+            android:background="#ffa500"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:id="@+id/view_color2"
+            android:background="#ffff00"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:id="@+id/view_color3"
+            android:background="#00ff00"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:id="@+id/view_color4"
+            android:background="#007fff"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:id="@+id/view_color5"
+            android:background="#8b00ff"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+        <View
+            android:id="@+id/view_color6"
+            android:background="#5e5e5e"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
     <com.byox.drawview.views.DrawView
         android:id="@+id/draw_view"
         android:layout_width="0dp"
