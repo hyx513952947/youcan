@@ -89,10 +89,6 @@ public class HomeFragment extends DaggerFragment {
     public void onViewClicked() {
         Logger.i("111111111111");
         NavController  controller = NavHostFragment.findNavController(this);
-        if (null == controller){
-            Logger.i("12321312");
-        }else {
-            controller.navigate(R.id.action_fragment_home_to_fragment_diary);
-        }
+        controller.navigate(R.id.action_fragment_home_to_fragment_diary);
     }
 }

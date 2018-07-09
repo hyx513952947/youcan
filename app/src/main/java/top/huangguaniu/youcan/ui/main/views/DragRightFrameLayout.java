@@ -73,9 +73,6 @@ public class DragRightFrameLayout extends FrameLayout {
         int parentRight = getPaddingRight();
         int parentTop = getPaddingTop();
         int parentBottom = getPaddingBottom();
-        if (!changed) {
-            return;
-        }
         for (int i = 0; i < count; i++) {
             View child = getChildAt(i);
             LayoutParams layoutParams = (LayoutParams) child.getLayoutParams();
