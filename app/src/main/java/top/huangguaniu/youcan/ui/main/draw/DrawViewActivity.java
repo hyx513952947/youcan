@@ -182,7 +182,6 @@ public class DrawViewActivity extends DaggerAppCompatActivity {
                 Object[] objects = drawView.createCapture(DrawingCapture.BYTES);
                 Intent intent = getIntent();
                 intent.putExtra("draw", (byte[]) objects[0]);
-                setResult(DiaryEditorFragment.CODE_DRAW_VIEW_RESULT,intent);
                 finish();
                 break;
         }
