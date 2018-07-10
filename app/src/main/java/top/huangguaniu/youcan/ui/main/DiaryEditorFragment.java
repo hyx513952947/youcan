@@ -16,6 +16,7 @@ import butterknife.OnClick;
 import butterknife.Unbinder;
 import dagger.android.support.DaggerFragment;
 import top.huangguaniu.youcan.R;
+import top.huangguaniu.youcan.ui.main.dialogs.LabelManageDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -53,6 +54,7 @@ public class DiaryEditorFragment extends DaggerFragment {
 
     @OnClick(R.id.text_label_manage)
     public void onTextLabelManageClicked() {
-
+        LabelManageDialog labelManageDialog = new LabelManageDialog();
+        labelManageDialog.show(getChildFragmentManager(),"labels");
     }
 }
