@@ -329,7 +329,6 @@ public class ColorPickerView extends View {
         float halfHTrackerHeight = mHTrackerHeight / 2;
         //初始化H选择器选择条位置
         Point p = hueToPoint(mHue);
-
         RectF r = new RectF();
         r.left = rect.left - mRectOffset;
         r.right = rect.right + mRectOffset;

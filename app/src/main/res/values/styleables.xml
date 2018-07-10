@@ -24,4 +24,8 @@
         <attr name="color_default" format="reference"/>
         <attr name="color_open" format="reference"/>
     </declare-styleable>
+
+    <declare-styleable name="TextViewColorPoint">
+        <attr name="color_point" format="color"/>
+    </declare-styleable>
 </resources>

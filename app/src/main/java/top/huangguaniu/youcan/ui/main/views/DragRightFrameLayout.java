@@ -91,7 +91,6 @@ public class DragRightFrameLayout extends FrameLayout {
                 childRight = child.getMeasuredWidth();
                 childBottom = child.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin - parentBottom;
             }
-            Logger.i("绘制的左上右下："+childLeft+"-"+childTop+"-"+childRight+"-"+childBottom);
             child.layout(childLeft, childTop, childRight, childBottom);
         }
     }
@@ -319,10 +318,5 @@ public class DragRightFrameLayout extends FrameLayout {
 
         reqMaxWidth = Math.max(reqMaxWidth, widthSize) + sizeMenuWidth;
         setMeasuredDimension(reqMaxWidth, reqMaxHeight);
-    }
-
-
-    private void log(String msg) {
-        Log.i(TAG, msg);
     }
 }

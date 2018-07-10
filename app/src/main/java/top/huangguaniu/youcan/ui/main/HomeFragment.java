@@ -10,9 +10,9 @@ import android.support.v7.widget.AppCompatImageView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -23,7 +23,6 @@ import top.huangguaniu.youcan.R;
 import top.huangguaniu.youcan.components.glide.GlideApp;
 import top.huangguaniu.youcan.components.glide.GlideRoundDrawableTransform;
 import top.huangguaniu.youcan.ui.main.views.Logger;
-import top.huangguaniu.youcan.ui.main.views.PopMenuButton;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -38,8 +37,6 @@ public class HomeFragment extends DaggerFragment {
     AppCompatImageView imageViewHead;
     @BindView(R.id.imageView_notify)
     AppCompatImageView imageViewNotify;
-    @BindView(R.id.button_note)
-    PopMenuButton buttonNote;
     @BindView(R.id.imageView_more)
     AppCompatImageView imageViewMore;
     @BindView(R.id.imageView_search)
@@ -85,9 +82,22 @@ public class HomeFragment extends DaggerFragment {
         }
     }
 
-    @OnClick(R.id.button_note)
-    public void onViewClicked() {
-        NavController  controller = NavHostFragment.findNavController(this);
+    @OnClick(R.id.imageView_image)
+    public void onImageViewImageClicked() {
+    }
+
+    @OnClick(R.id.imageView_textSize)
+    public void onImageViewTextSizeClicked() {
+        Toast.makeText(getContext(),"新建笔记",Toast.LENGTH_SHORT).show();
+        NavController controller = NavHostFragment.findNavController(this);
         controller.navigate(R.id.action_fragment_home_to_fragment_diary);
+    }
+
+    @OnClick(R.id.imageView_draw)
+    public void onImageViewDrawClicked() {
+    }
+
+    @OnClick(R.id.imageView_voice)
+    public void onImageViewVoiceClicked() {
     }
 }
