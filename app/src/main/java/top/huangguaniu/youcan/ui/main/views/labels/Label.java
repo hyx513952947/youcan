@@ -17,11 +17,13 @@ import android.view.View;
 import android.view.ViewConfiguration;
 
 import top.huangguaniu.youcan.R;
+import top.huangguaniu.youcan.ui.main.views.utils.DisplayUtil;
 
 /**
  * Created by 侯延旭 on 2018/7/11.
  */
 public class Label extends View {
+    public static int INVALID = -1;
     private boolean leftEnable = false;
     private boolean rightEnable = false;
     private float textSize;
@@ -29,6 +31,16 @@ public class Label extends View {
     private Bitmap iconLeft, iconRight;
     private String title = "";
     private int textPadding;
+
+    private boolean isLocked = false;
+
+    public void setLocked(boolean locked) {
+        isLocked = locked;
+    }
+
+    public void setTextPadding(int textPadding) {
+        this.textPadding = textPadding;
+    }
 
     public boolean isLeftEnable() {
         return leftEnable;
@@ -44,6 +56,10 @@ public class Label extends View {
 
     public void setRightEnable(boolean rightEnable) {
         this.rightEnable = rightEnable;
+        if (rightEnable){
+            iconRight = BitmapFactory.decodeResource(getResources(), R.drawable.icon_delete);
+            rectSrcRight = new Rect(0, 0, iconRight.getWidth(), iconRight.getHeight());
+        }
     }
 
     public float getTextSize() {
@@ -51,7 +67,7 @@ public class Label extends View {
     }
 
     public void setTextSize(float textSize) {
-        this.textSize = textSize;
+        this.textSize = DisplayUtil.px2sp(getContext(),textSize);
     }
 
     public int getTextColor() {
@@ -64,13 +80,9 @@ public class Label extends View {
         postInvalidate();
     }
 
-    public Bitmap getIconLeft() {
-        return iconLeft;
-    }
-
     public void setIconLeft(Bitmap iconLeft) {
         this.iconLeft = iconLeft;
-        postInvalidate();
+        this.leftEnable = true;
     }
 
     public String getTitle() {
@@ -79,7 +91,6 @@ public class Label extends View {
 
     public void setTitle(String title) {
         this.title = title;
-        postInvalidate();
     }
 
     private Rect rectSrcLeft, rectSrcRight;
@@ -88,7 +99,23 @@ public class Label extends View {
     private Paint paint;
 
     public Label(Context context) {
-        this(context, null);
+        super(context);
+        initDefault();
+    }
+
+    private void initDefault() {
+        leftEnable = false;
+        rightEnable = true;
+        textSize = DisplayUtil.px2sp(getContext(),120);
+        textColor = Color.BLACK;
+        textPadding = DisplayUtil.px2dip(getContext(),50);
+        iconRight = BitmapFactory.decodeResource(getResources(), R.drawable.icon_delete);
+        rectSrcRight = new Rect(0, 0, iconRight.getWidth(), iconRight.getHeight());
+        paint = new Paint(Paint.ANTI_ALIAS_FLAG);
+        paint.setColor(textColor);
+        paint.setTextSize(textSize);
+        ViewConfiguration viewConfiguration = ViewConfiguration.get(getContext());
+        mSlopScroll = viewConfiguration.getScaledTouchSlop();
     }
 
     public Label(Context context, @Nullable AttributeSet attrs) {
@@ -144,7 +171,11 @@ public class Label extends View {
         Paint.FontMetrics fontMetrics = paint.getFontMetrics();
         float fontHeight = fontMetrics.bottom - fontMetrics.top;
         float textBaseY = getMeasuredHeight() - (getMeasuredHeight() - fontHeight) / 2 - fontMetrics.bottom;
-        canvas.drawText(title, textX, textBaseY, paint);
+        if (leftEnable){
+            canvas.drawText(title,textX, textBaseY, paint);
+        }else {
+            canvas.drawText(title, getPaddingLeft()+textX, textBaseY, paint);
+        }
     }
 
     private float xDown, yDown, xLast, yLast;
@@ -158,9 +189,11 @@ public class Label extends View {
             case MotionEvent.ACTION_DOWN:
                 xDown = event.getX();
                 yDown = event.getY();
-                if (xDown >= rectRightDst.left && xDown <= rectRightDst.right
-                        && yDown >= rectRightDst.top && yDown <= rectRightDst.bottom) {
-                    touchDelete = true;
+                if (null != rectRightDst){
+                    if (xDown >= rectRightDst.left && xDown <= rectRightDst.right
+                            && yDown >= rectRightDst.top && yDown <= rectRightDst.bottom) {
+                        touchDelete = true;
+                    }
                 }
                 break;
             case MotionEvent.ACTION_MOVE:
@@ -171,7 +204,9 @@ public class Label extends View {
                 if (Math.abs(xLast - xDown) <= mSlopScroll && Math.abs(yDown - yLast) <= mSlopScroll) {
                     if (touchDelete){
                         if (null != onDeleteClickListener){
-                            onDeleteClickListener.onDelete(this);
+                            if (!isLocked){
+                                onDeleteClickListener.onDelete(this);
+                            }
                         }
                     }else {
                         if (null != onTouchClickListener){
@@ -196,7 +231,7 @@ public class Label extends View {
         if (leftEnable) {
             haveMeaLeft = true;
             sizeH += textPadding * 2;
-            sizeW += (textPadding / 2 + sizeH);
+            sizeW += (textPadding  + sizeH);
             if (rectLeftDst == null) {
                 rectLeftDst = new RectF(getPaddingLeft(), getPaddingTop(), sizeH - getPaddingRight(), sizeH - getPaddingBottom());
             }
@@ -206,11 +241,15 @@ public class Label extends View {
                 sizeW += sizeH;
             } else {
                 sizeH += textPadding * 2;
-                sizeW += (textPadding / 2 + sizeH);
+                sizeW += (textPadding + sizeH);
             }
             if (rectRightDst == null) {
                 rectRightDst = new RectF(sizeW - sizeH + getPaddingRight(), getPaddingTop(), sizeW - getPaddingRight(), sizeH - getPaddingBottom());
             }
+        }
+        if (!rightEnable && !leftEnable){
+            sizeH += textPadding*2;
+            sizeW+= getPaddingLeft()+getPaddingRight()+textPadding;
         }
         int w = MeasureSpec.makeMeasureSpec(sizeW, modeW);
         int h = MeasureSpec.makeMeasureSpec(sizeH, modeH);
@@ -223,6 +262,64 @@ public class Label extends View {
 
     public void setOnDeleteClickListener(OnDeleteClickListener onDeleteClickListener) {
         this.onDeleteClickListener = onDeleteClickListener;
+    }
+
+    public void setIconRight(Bitmap iconRight) {
+        this.iconRight = iconRight;
+    }
+
+    /**
+     * @return 创建供选择的
+     */
+    public static Label createSelectableLabel(Context context,String title,int left){
+        Label label = new Label(context);
+        if (left != INVALID) {
+            label.setLeftEnable(true);
+            label.setIconLeft(BitmapFactory.decodeResource(context.getResources(),left));
+        }
+        label.setTitle(title);
+        label.setRightEnable(false);
+        label.setBackgroundResource(R.drawable.shape_label);
+        return label;
+    }
+    /**
+     * 创建的是默认的不能删除
+     */
+
+    public static Label createLabel(Context context,String title,int left){
+        Label label = new Label(context);
+        if (left != INVALID) {
+            label.setLeftEnable(true);
+            label.setIconLeft(BitmapFactory.decodeResource(context.getResources(),left));
+        }
+        label.setIconRight(BitmapFactory.decodeResource(context.getResources(),R.drawable.icon_lock));
+        label.setTitle(title);
+        label.setLocked(true);
+        label.setBackgroundResource(R.drawable.shape_label);
+        return label;
+    }
+
+    /**
+     *  创建可被删除的默认标签
+     */
+    public static Label createDeletableLabel(Context context,String title,int left){
+        Label label = new Label(context);
+        if (left != INVALID) {
+            label.setLeftEnable(true);
+            label.setIconLeft(BitmapFactory.decodeResource(context.getResources(),left));
+        }
+        label.setIconRight(BitmapFactory.decodeResource(context.getResources(),R.drawable.icon_delete));
+        label.setTitle(title);
+        label.setBackgroundResource(R.drawable.shape_label);
+        return label;
+    }
+
+
+    public static Label createLabel(Context context,String title){
+        Label label = new Label(context);
+        label.setTitle(title);
+        label.setBackgroundResource(R.drawable.shape_label);
+        return label;
     }
 
     private OnTouchClickListener onTouchClickListener;
