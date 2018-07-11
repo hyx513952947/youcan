@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:paddingBottom="16dp"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:paddingBottom="16dp">
 
     <android.support.v7.widget.AppCompatTextView
         android:layout_width="wrap_content"
@@ -13,8 +12,8 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="标签管理"
-        android:textSize="18sp"
         android:textColor="#000"
+        android:textSize="18sp"
         app:layout_constraintBottom_toTopOf="@+id/input_label"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -52,50 +51,34 @@
         android:layout_height="20dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="现有标签 ( 长按删除 ) "
+        android:text="所有标签"
         app:color_point="#ee0000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/input_label" />
-
-    <top.huangguaniu.youcan.ui.main.views.LabelViewGroup
+    <android.support.v4.widget.NestedScrollView
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="200dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="24dp"
         android:background="@drawable/shape_edit_input"
-        android:paddingTop="8dp"
-        android:paddingBottom="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewColorPoint"
-        app:layout_constraintVertical_bias="0.0">
-
-        <TextView
-            android:background="@drawable/shape_edit_input"
-            android:layout_width="wrap_content"
+        app:layout_constraintVertical_bias="0.0"
+        >
+        <top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup
+            android:id="@+id/layout_label"
+            android:layout_width="match_parent"
+            android:paddingTop="8dp"
+            android:animateLayoutChanges="true"
             android:layout_height="wrap_content"
-            android:text="记录0" />
+            android:paddingBottom="24dp"
+            >
+        </top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup>
+    </android.support.v4.widget.NestedScrollView>
 
-        <TextView
-            android:background="@drawable/shape_edit_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="记录1" />
-
-        <TextView
-            android:background="@drawable/shape_edit_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="记录2" />
-
-        <TextView
-            android:background="@drawable/shape_edit_input"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="记录3" />
-    </top.huangguaniu.youcan.ui.main.views.LabelViewGroup>
 </android.support.constraint.ConstraintLayout>

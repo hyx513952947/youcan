@@ -34,4 +34,10 @@
         <item>天气</item>
         <item>心情</item>
     </string-array>
+    <string-array name="array_default_labels">
+        <item>地点</item>
+        <item>心情</item>
+        <item>日期</item>
+        <item>天气</item>
+    </string-array>
 </resources>

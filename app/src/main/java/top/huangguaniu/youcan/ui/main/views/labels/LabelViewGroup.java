@@ -1,4 +1,4 @@
-package top.huangguaniu.youcan.ui.main.views;
+package top.huangguaniu.youcan.ui.main.views.labels;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,11 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import top.huangguaniu.youcan.R;
+import top.huangguaniu.youcan.ui.main.views.Logger;
 
 /**
  * Created by 侯延旭 on 2018/7/10.
  */
-public class LabelViewGroup extends ViewGroup {
+public class LabelViewGroup extends ViewGroup implements Label.OnDeleteClickListener,Label.OnTouchClickListener{
     // 水平间距，单位为dp
     private int horizontalSpacing = dp2px(15);
     // 垂直间距，单位为dp
@@ -69,6 +70,11 @@ public class LabelViewGroup extends ViewGroup {
         restoreLine();
         for (int i = 0; i < getChildCount(); i++) {
             View child = getChildAt(i);
+            if (child instanceof Label){
+                Label label = (Label) child;
+                label.setOnDeleteClickListener(this);
+                label.setOnTouchClickListener(this);
+            }
             int childWidthMeasureSpec = MeasureSpec.makeMeasureSpec(width,
                     widthMode == MeasureSpec.EXACTLY ? MeasureSpec.AT_MOST : widthMode);
             int childHeightMeasureSpec = MeasureSpec.makeMeasureSpec(height,
@@ -116,6 +122,18 @@ public class LabelViewGroup extends ViewGroup {
         line = new Line();
         lineSize = 0;
     }
+
+    @Override
+    public void onClick(Label view) {
+        Logger.i("容器点击标签："+view.getTitle());
+    }
+
+    @Override
+    public void onDelete(Label view) {
+        Logger.i("容器删除标签："+view.getTitle());
+        removeView(view);
+    }
+
     class Line {
         private List<View> children = new ArrayList<View>();
         int height;

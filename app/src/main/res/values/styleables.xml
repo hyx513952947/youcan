@@ -28,4 +28,14 @@
     <declare-styleable name="TextViewColorPoint">
         <attr name="color_point" format="color"/>
     </declare-styleable>
+    <declare-styleable name="Label">
+        <attr name="left_enable" format="boolean"/>
+        <attr name="right_enable" format="boolean"/>
+        <attr name="text_size" format="dimension"/>
+        <attr name="text_color" format="color"/>
+        <attr name="src_left" format="reference"/>
+        <attr name="src_right" format="reference"/>
+        <attr name="text" format="string"/>
+        <attr name="text_padding" format="dimension"/>
+    </declare-styleable>
 </resources>

@@ -104,7 +104,7 @@
                 android:text="标签"
                 app:color_point="#431cf2"
                 android:layout_height="wrap_content" />
-            <top.huangguaniu.youcan.ui.main.views.LabelViewGroup
+            <top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup
                 android:layout_margin="16dp"
                 android:paddingTop="8dp"
                 android:background="@drawable/shape_edit_input"
@@ -126,7 +126,7 @@
                     android:text="日期日期日期"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-            </top.huangguaniu.youcan.ui.main.views.LabelViewGroup>
+            </top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup>
             <RelativeLayout
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
@@ -147,7 +147,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
             </RelativeLayout>
-            <top.huangguaniu.youcan.ui.main.views.LabelViewGroup
+            <top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup
                 android:layout_margin="16dp"
                 android:paddingTop="8dp"
                 android:paddingBottom="8dp"
@@ -170,7 +170,7 @@
                     android:text="记录3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content" />
-            </top.huangguaniu.youcan.ui.main.views.LabelViewGroup>
+            </top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>
