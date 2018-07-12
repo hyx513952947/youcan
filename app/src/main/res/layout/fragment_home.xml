@@ -126,16 +126,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <top.huangguaniu.youcan.ui.main.views.labels.Label
-                android:layout_margin="8dp"
-                app:text="2018-07-11 13:33"
-                app:left_enable="true"
-                android:background="@drawable/shape_label"
-                app:right_enable="true"
-                app:text_padding="8dp"
-                app:text_size="14sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
 </android.support.constraint.ConstraintLayout>

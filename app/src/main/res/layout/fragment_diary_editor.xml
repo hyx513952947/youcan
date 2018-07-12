@@ -54,9 +54,8 @@
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginStart="0dp"
         android:layout_marginBottom="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/layout_foot"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view">
@@ -65,25 +64,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <top.huangguaniu.youcan.ui.main.views.editcomponent.TextViewColorPoint
-                android:layout_margin="8dp"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:text="标题"
-                app:color_point="#f90000"
-                android:layout_height="wrap_content" />
+                app:color_point="#f90000" />
+
             <android.support.v7.widget.AppCompatEditText
-                android:layout_margin="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:background="@drawable/shape_edit_input"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:background="@drawable/shape_edit_input"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp" />
+
             <top.huangguaniu.youcan.ui.main.views.editcomponent.TextViewColorPoint
-                android:layout_margin="8dp"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:text="内容"
-                app:color_point="#00d0ff"
-                android:layout_height="wrap_content" />
+                app:color_point="#00d0ff" />
 
             <android.support.v7.widget.AppCompatEditText
                 android:layout_width="match_parent"
@@ -98,53 +100,119 @@
                 android:text="@string/shi"
                 android:textColor="#373737"
                 android:textSize="16sp" />
+
             <top.huangguaniu.youcan.ui.main.views.editcomponent.TextViewColorPoint
-                android:layout_margin="8dp"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="8dp"
                 android:text="标签"
-                app:color_point="#431cf2"
-                android:layout_height="wrap_content" />
+                app:color_point="#431cf2" />
+
             <top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup
-                android:layout_margin="16dp"
                 android:id="@+id/layout_label_select"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
                 android:animateLayoutChanges="true"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
                 android:background="@drawable/shape_edit_input"
-                android:layout_width="match_parent"
                 android:minHeight="50dp"
-                android:layout_height="wrap_content" >
-            </top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup>
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
+
             <RelativeLayout
-                android:layout_marginStart="24dp"
-                android:layout_marginEnd="24dp"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginEnd="24dp">
+
                 <View
-                    android:layout_centerInParent="true"
-                    android:background="#929292"
                     android:layout_width="match_parent"
-                    android:layout_height="0.5dp"/>
+                    android:layout_height="0.5dp"
+                    android:layout_centerInParent="true"
+                    android:background="#929292" />
+
                 <TextView
                     android:id="@+id/text_label_manage"
-                    android:padding="8dp"
-                    android:background="#fff"
-                    android:textColor="#005cdc"
-                    android:text="@string/labelmanager"
-                    android:layout_centerInParent="true"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:background="#fff"
+                    android:padding="8dp"
+                    android:text="@string/labelmanager"
+                    android:textColor="#005cdc" />
             </RelativeLayout>
+
             <top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup
                 android:id="@+id/layout_label_all"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_margin="16dp"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
                 android:animateLayoutChanges="true"
                 android:background="@drawable/shape_edit_input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-            </top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup>
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"/>
         </LinearLayout>
     </android.support.v4.widget.NestedScrollView>
+    <LinearLayout
+        android:id="@+id/layout_foot"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_alignParentBottom="true"
+        android:layout_gravity="center_vertical"
+        android:background="#f8f3f3f3"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView_image"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:padding="8dp"
+            android:src="@drawable/icon_image" />
+
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="#9d9d9d" />
+
+        <ImageView
+            android:id="@+id/imageView_textSize"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:padding="8dp"
+            android:layout_weight="1"
+            android:src="@drawable/selector_word" />
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="#9d9d9d" />
+        <ImageView
+            android:id="@+id/imageView_draw"
+            android:layout_width="0dp"
+            android:padding="8dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:src="@drawable/icon_draw" />
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_vertical"
+            android:background="#9d9d9d" />
+        <ImageView
+            android:padding="8dp"
+            android:id="@+id/imageView_voice"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:layout_weight="1"
+            android:src="@drawable/icon_voice" />
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>

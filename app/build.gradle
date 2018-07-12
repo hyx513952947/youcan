@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'androidx.navigation.safeargs'
+apply plugin: 'realm-android'
 android {
     compileSdkVersion 27
     defaultConfig {
@@ -13,6 +14,7 @@ android {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
             abiFilters "armeabi", "armeabi-v7a"
         }
+
     }
     buildTypes {
         release {
@@ -20,8 +22,14 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility = '1.8'
+        targetCompatibility = '1.8'
+    }
 }
-
+realm {
+    syncEnabled = true
+}
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support.constraint:constraint-layout:1.1.2'
@@ -68,4 +76,18 @@ dependencies {
     //高德地图
     implementation 'com.amap.api:location:4.1.0'
     implementation 'com.amap.api:map2d:5.2.0'
+    //retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    // 最基础的架构，仅提供了系统默认的图片选择器和拍照功能
+    implementation 'com.github.qingmei2:rximagepicker:0.4.0'
+// 提供了自定义UI图片选择器的基本组件，自定义UI的需求需要添加该依赖
+    implementation 'com.github.qingmei2:rximagepicker_support:0.4.0'
+// 如果需要额外的UI支持，请选择依赖对应的UI拓展库
+    implementation 'com.github.qingmei2:rximagepicker_support_wechat:0.4.0'
+
+    //realm
+    implementation 'io.realm:android-adapters:3.0.0'
 }
