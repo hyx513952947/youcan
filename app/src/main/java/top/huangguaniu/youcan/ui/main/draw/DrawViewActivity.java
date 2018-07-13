@@ -1,5 +1,6 @@
 package top.huangguaniu.youcan.ui.main.draw;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -7,6 +8,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.byox.drawview.enums.DrawingCapture;
 import com.byox.drawview.enums.DrawingMode;
@@ -18,10 +20,10 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import dagger.android.support.DaggerAppCompatActivity;
 import top.huangguaniu.youcan.R;
-import top.huangguaniu.youcan.ui.main.DiaryEditorFragment;
 import top.huangguaniu.youcan.ui.main.draw.dialogs.DrawAttribsDialog;
 import top.huangguaniu.youcan.ui.main.draw.dialogs.DrawSelectShapeDialog;
 import top.huangguaniu.youcan.ui.main.draw.dialogs.RequestTextDialog;
+import top.huangguaniu.youcan.ui.main.views.HappyToast;
 
 /**
  * @author hyx
@@ -43,6 +45,9 @@ public class DrawViewActivity extends DaggerAppCompatActivity {
     @BindView(R.id.imageView_save)
     ImageView imageViewSave;
 
+    public final static int CODE_REQUEST = 99;
+    public final static String KEY_DRAW = "draw";
+    public final static String FILE_END = "end";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,7 +62,6 @@ public class DrawViewActivity extends DaggerAppCompatActivity {
             public void onStartDrawing() {
 
             }
-
             @Override
             public void onEndDrawing() {
                 canUndoRedo();
@@ -179,9 +183,15 @@ public class DrawViewActivity extends DaggerAppCompatActivity {
                 finish();
                 break;
             case R.id.imageView_save:
+                if (drawView.isDrawViewEmpty()){
+                    HappyToast.makeText(getApplicationContext(),"你又啥都没画吧？",Toast.LENGTH_LONG).show();
+                    finish();
+                }
                 Object[] objects = drawView.createCapture(DrawingCapture.BYTES);
                 Intent intent = getIntent();
-                intent.putExtra("draw", (byte[]) objects[0]);
+                intent.putExtra(KEY_DRAW, (byte[]) objects[0]);
+                intent.putExtra(FILE_END, (String) objects[1]);
+                setResult(Activity.RESULT_OK,intent);
                 finish();
                 break;
         }

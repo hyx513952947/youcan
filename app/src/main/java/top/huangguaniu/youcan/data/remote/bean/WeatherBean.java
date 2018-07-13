@@ -15,7 +15,7 @@ public class WeatherBean {
      * status : 200
      * city : 北京
      * count : 3
-     * data : {"shidu":"76%","pm25":29,"pm10":36,"quality":"优","wendu":"24","ganmao":"各类人群可自由活动","yesterday":{"date":"10日星期二","sunrise":"04:54","high":"高温 30.0℃","low":"低温 23.0℃","sunset":"19:45","aqi":43,"fx":"东南风","fl":"<3级","type":"阴","notice":"不要被阴云遮挡住好心情"},"forecast":[{"date":"11日星期三","sunrise":"04:54","high":"高温 24.0℃","low":"低温 22.0℃","sunset":"19:44","aqi":51,"fx":"东北风","fl":"<3级","type":"雷阵雨","notice":"带好雨具，别在树下躲雨"},{"date":"12日星期四","sunrise":"04:55","high":"高温 27.0℃","low":"低温 22.0℃","sunset":"19:44","aqi":74,"fx":"无持续风向","fl":"<3级","type":"雷阵雨","notice":"带好雨具，别在树下躲雨"},{"date":"13日星期五","sunrise":"04:56","high":"高温 30.0℃","low":"低温 24.0℃","sunset":"19:43","aqi":73,"fx":"南风","fl":"<3级","type":"小雨","notice":"雨虽小，注意保暖别感冒"},{"date":"14日星期六","sunrise":"04:56","high":"高温 33.0℃","low":"低温 25.0℃","sunset":"19:43","aqi":84,"fx":"南风","fl":"<3级","type":"多云","notice":"阴晴之间，谨防紫外线侵扰"},{"date":"15日星期日","sunrise":"04:57","high":"高温 32.0℃","low":"低温 25.0℃","sunset":"19:42","aqi":105,"fx":"南风","fl":"<3级","type":"多云","notice":"阴晴之间，谨防紫外线侵扰"}]}
+     * data : {"shidu":"76%","pm25":29,"pm10":36,"quality":"优","wendu":"24","ganmao":"各类人群可自由活动","yesterday":{"date":"10日星期二","sunrise":"m04:54","high":"高温 30.0℃","low":"低温 23.0℃","sunset":"19:45","aqi":43,"fx":"东南风","fl":"<3级","type":"阴","notice":"不要被阴云遮挡住好心情"},"forecast":[{"date":"11日星期三","sunrise":"m04:54","high":"高温 24.0℃","low":"低温 22.0℃","sunset":"19:44","aqi":51,"fx":"东北风","fl":"<3级","type":"雷阵雨","notice":"带好雨具，别在树下躲雨"},{"date":"12日星期四","sunrise":"m04:55","high":"高温 27.0℃","low":"低温 22.0℃","sunset":"19:44","aqi":74,"fx":"无持续风向","fl":"<3级","type":"雷阵雨","notice":"带好雨具，别在树下躲雨"},{"date":"13日星期五","sunrise":"m04:56","high":"高温 30.0℃","low":"低温 24.0℃","sunset":"19:43","aqi":73,"fx":"南风","fl":"<3级","type":"小雨","notice":"雨虽小，注意保暖别感冒"},{"date":"14日星期六","sunrise":"m04:56","high":"高温 33.0℃","low":"低温 25.0℃","sunset":"19:43","aqi":84,"fx":"南风","fl":"<3级","type":"多云","notice":"阴晴之间，谨防紫外线侵扰"},{"date":"15日星期日","sunrise":"m04:57","high":"高温 32.0℃","low":"低温 25.0℃","sunset":"19:42","aqi":105,"fx":"南风","fl":"<3级","type":"多云","notice":"阴晴之间，谨防紫外线侵扰"}]}
      */
 
     private String date;
@@ -81,8 +81,8 @@ public class WeatherBean {
          * quality : 优
          * wendu : 24
          * ganmao : 各类人群可自由活动
-         * yesterday : {"date":"10日星期二","sunrise":"04:54","high":"高温 30.0℃","low":"低温 23.0℃","sunset":"19:45","aqi":43,"fx":"东南风","fl":"<3级","type":"阴","notice":"不要被阴云遮挡住好心情"}
-         * forecast : [{"date":"11日星期三","sunrise":"04:54","high":"高温 24.0℃","low":"低温 22.0℃","sunset":"19:44","aqi":51,"fx":"东北风","fl":"<3级","type":"雷阵雨","notice":"带好雨具，别在树下躲雨"},{"date":"12日星期四","sunrise":"04:55","high":"高温 27.0℃","low":"低温 22.0℃","sunset":"19:44","aqi":74,"fx":"无持续风向","fl":"<3级","type":"雷阵雨","notice":"带好雨具，别在树下躲雨"},{"date":"13日星期五","sunrise":"04:56","high":"高温 30.0℃","low":"低温 24.0℃","sunset":"19:43","aqi":73,"fx":"南风","fl":"<3级","type":"小雨","notice":"雨虽小，注意保暖别感冒"},{"date":"14日星期六","sunrise":"04:56","high":"高温 33.0℃","low":"低温 25.0℃","sunset":"19:43","aqi":84,"fx":"南风","fl":"<3级","type":"多云","notice":"阴晴之间，谨防紫外线侵扰"},{"date":"15日星期日","sunrise":"04:57","high":"高温 32.0℃","low":"低温 25.0℃","sunset":"19:42","aqi":105,"fx":"南风","fl":"<3级","type":"多云","notice":"阴晴之间，谨防紫外线侵扰"}]
+         * yesterday : {"date":"10日星期二","sunrise":"m04:54","high":"高温 30.0℃","low":"低温 23.0℃","sunset":"19:45","aqi":43,"fx":"东南风","fl":"<3级","type":"阴","notice":"不要被阴云遮挡住好心情"}
+         * forecast : [{"date":"11日星期三","sunrise":"m04:54","high":"高温 24.0℃","low":"低温 22.0℃","sunset":"19:44","aqi":51,"fx":"东北风","fl":"<3级","type":"雷阵雨","notice":"带好雨具，别在树下躲雨"},{"date":"12日星期四","sunrise":"m04:55","high":"高温 27.0℃","low":"低温 22.0℃","sunset":"19:44","aqi":74,"fx":"无持续风向","fl":"<3级","type":"雷阵雨","notice":"带好雨具，别在树下躲雨"},{"date":"13日星期五","sunrise":"m04:56","high":"高温 30.0℃","low":"低温 24.0℃","sunset":"19:43","aqi":73,"fx":"南风","fl":"<3级","type":"小雨","notice":"雨虽小，注意保暖别感冒"},{"date":"14日星期六","sunrise":"m04:56","high":"高温 33.0℃","low":"低温 25.0℃","sunset":"19:43","aqi":84,"fx":"南风","fl":"<3级","type":"多云","notice":"阴晴之间，谨防紫外线侵扰"},{"date":"15日星期日","sunrise":"m04:57","high":"高温 32.0℃","low":"低温 25.0℃","sunset":"19:42","aqi":105,"fx":"南风","fl":"<3级","type":"多云","notice":"阴晴之间，谨防紫外线侵扰"}]
          */
 
         private String shidu;
@@ -161,7 +161,7 @@ public class WeatherBean {
         public static class YesterdayBean {
             /**
              * date : 10日星期二
-             * sunrise : 04:54
+             * sunrise : m04:54
              * high : 高温 30.0℃
              * low : 低温 23.0℃
              * sunset : 19:45
@@ -267,7 +267,7 @@ public class WeatherBean {
         public static class ForecastBean {
             /**
              * date : 11日星期三
-             * sunrise : 04:54
+             * sunrise : m04:54
              * high : 高温 24.0℃
              * low : 低温 22.0℃
              * sunset : 19:44

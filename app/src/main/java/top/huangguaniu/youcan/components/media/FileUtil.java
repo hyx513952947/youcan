@@ -1,12 +1,9 @@
 package top.huangguaniu.youcan.components.media;
 
-import android.content.Context;
 import android.os.Environment;
 
 import java.io.File;
 import java.io.IOException;
-
-import top.huangguaniu.youcan.ui.main.views.Logger;
 
 /**
  * Created by 侯延旭 on 2018/7/12.
@@ -58,6 +55,7 @@ public class FileUtil {
     public static File getNewImageFile(String name){
         File file =  Environment.getExternalStorageDirectory();
         if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+
             File fileCreated = new File(file.getPath()+FILENAME+"/images",name);
             if (!fileCreated.exists()){
                 try {
@@ -70,4 +68,27 @@ public class FileUtil {
         }
         return null;
     }
+
+    /**
+     * 手绘
+     */
+    public static File getNewDrawFile(String name){
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File filePath = new File(Environment.getExternalStorageDirectory().getPath()+FILENAME+"/images/draws/");
+            if (!filePath.exists()){
+                filePath.mkdirs();
+            }
+            File fileCreated = new File(Environment.getExternalStorageDirectory().getPath()+FILENAME+"/images/draws",name);
+            if (!fileCreated.exists()){
+                try {
+                    fileCreated.createNewFile();
+                } catch (IOException e) {
+                    return null;
+                }
+            }
+            return fileCreated;
+        }
+        return null;
+    }
+
 }

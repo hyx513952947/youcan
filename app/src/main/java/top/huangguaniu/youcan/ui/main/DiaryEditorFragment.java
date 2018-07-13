@@ -2,21 +2,28 @@ package top.huangguaniu.youcan.ui.main;
 
 
 import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.amap.api.location.AMapLocation;
 import com.amap.api.location.AMapLocationClient;
 import com.amap.api.location.AMapLocationClientOption;
 import com.amap.api.location.AMapLocationListener;
+
+import java.io.File;
+import java.util.Objects;
 
 import javax.inject.Inject;
 
@@ -36,10 +43,15 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 import top.huangguaniu.youcan.R;
+import top.huangguaniu.youcan.components.media.FileIo;
+import top.huangguaniu.youcan.components.media.FileUtil;
 import top.huangguaniu.youcan.data.Depository;
 import top.huangguaniu.youcan.ui.main.dialogs.LabelManageDialog;
 import top.huangguaniu.youcan.ui.main.dialogs.SelectImageDialog;
+import top.huangguaniu.youcan.ui.main.dialogs.SelectItemDialog;
+import top.huangguaniu.youcan.ui.main.draw.DrawViewActivity;
 import top.huangguaniu.youcan.ui.main.views.HappyToast;
+import top.huangguaniu.youcan.ui.main.views.Logger;
 import top.huangguaniu.youcan.ui.main.views.labels.Label;
 import top.huangguaniu.youcan.ui.main.views.labels.LabelManager;
 import top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup;
@@ -58,6 +70,8 @@ public class DiaryEditorFragment extends DaggerFragment {
     @BindView(R.id.layout_label_all)
     LabelViewGroup layoutLabelAll;
     LabelManager labelManager;
+    @BindView(R.id.scrollView)
+    NestedScrollView scrollView;
 
     private AMapLocationClient mLocationClient = null;
     private AMapLocationClientOption mLocationOption = null;
@@ -85,10 +99,7 @@ public class DiaryEditorFragment extends DaggerFragment {
     };
 
 
-    private LabelViewGroup.OnLabelStateListener selectedLabelListener = new LabelViewGroup.OnLabelStateListener() {
-        @Override
-        public void onLabelChanged(Label label, boolean isRemoved, boolean isTouched) {
-        }
+    private LabelViewGroup.OnLabelStateListener selectedLabelListener = (label, isRemoved, isTouched) -> {
     };
 
     private LabelViewGroup.OnLabelStateListener allLabelListener = new LabelViewGroup.OnLabelStateListener() {
@@ -100,7 +111,7 @@ public class DiaryEditorFragment extends DaggerFragment {
     };
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_diary_editor, container, false);
         unbinder = ButterKnife.bind(this, view);
@@ -119,6 +130,7 @@ public class DiaryEditorFragment extends DaggerFragment {
         DiaryEditorFragmentPermissionsDispatcher.needLocationPermissionWithPermissionCheck(this);
     }
 
+
     @Override
     public void onDestroyView() {
         super.onDestroyView();
@@ -128,7 +140,7 @@ public class DiaryEditorFragment extends DaggerFragment {
 
     @OnClick(R.id.appCompatImageView_back)
     public void onAppCompatImageViewBackClicked() {
-        NavController controller = Navigation.findNavController(getView());
+        NavController controller = Navigation.findNavController(Objects.requireNonNull(getView()));
 
     }
 
@@ -179,16 +191,61 @@ public class DiaryEditorFragment extends DaggerFragment {
 
     @OnPermissionDenied({Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     void showLocationDenied() {
-        HappyToast.makeText(getContext(),"权限不给我自己填去吧",Toast.LENGTH_LONG).show();
+        HappyToast.makeText(getContext(), "权限不给我自己填去吧", Toast.LENGTH_LONG).show();
     }
 
     @OnClick(R.id.imageView_image)
     public void onImageViewImageClicked() {
-        SelectImageDialog selectImageDialog = SelectImageDialog.newInstance("没标题",null);
-        selectImageDialog.show(getChildFragmentManager(),"select");
+        SelectImageDialog selectImageDialog = SelectImageDialog.newInstance("没标题", (String[]) null);
+        selectImageDialog.setOnImageSelectedListener(results -> {
+            // todo  选择完照片
+
+        });
+        selectImageDialog.show(getChildFragmentManager(), "select");
     }
 
     @OnClick(R.id.imageView_draw)
     public void onImageViewDrawClicked() {
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == DrawViewActivity.CODE_REQUEST && resultCode == Activity.RESULT_OK) {
+            byte[] draw = data.getByteArrayExtra(DrawViewActivity.KEY_DRAW);
+            String end = data.getStringExtra(DrawViewActivity.FILE_END);
+            File file = FileUtil.getNewDrawFile(String.format("%s.%s", System.currentTimeMillis(), end));
+            FileIo.byteToFile(draw, file);
+        }
+    }
+
+    @OnClick(R.id.appCompatImageView_back)
+    public void onViewClicked() {
+
+    }
+
+    @OnClick(R.id.appCompatImageView)
+    public void onAppCompatImageView() {
+        String[] arr = getResources().getStringArray(R.array.array_default_edit);
+        SelectItemDialog selectItemDialog = SelectItemDialog.newInstance("更多选项", arr);
+        selectItemDialog.setOnChoiceDialogListener(new SelectItemDialog.OnChoiceDialogListener() {
+            @Override
+            public void onChoiceSelected(int position) {
+                Logger.i("索引:" + position);
+            }
+        });
+        selectItemDialog.show(getChildFragmentManager(), "菜单");
+    }
+
+    @OnClick(R.id.imageView_draw)
+    public void onImageView_draw() {
+        Intent intent = new Intent(getContext(), DrawViewActivity.class);
+        startActivityForResult(intent, DrawViewActivity.CODE_REQUEST);
+    }
+
+    @OnClick(R.id.imageView_textSize)
+    public void ontextSized() {
+        scrollView.fullScroll(ScrollView.FOCUS_DOWN);
     }
 }

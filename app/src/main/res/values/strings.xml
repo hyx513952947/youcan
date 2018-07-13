@@ -40,6 +40,12 @@
         <item>日期</item>
         <item>天气</item>
     </string-array>
+    <string-array name="array_default_edit">
+        <item>保存</item>
+        <item>预览</item>
+        
+    </string-array>
     <string-array name="array_default_image_type_select">
+        
     </string-array>
 </resources>

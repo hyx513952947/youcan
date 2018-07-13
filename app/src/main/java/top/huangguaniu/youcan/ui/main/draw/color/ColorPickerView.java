@@ -30,7 +30,7 @@ import java.lang.annotation.RetentionPolicy;
  * 所有注释单位为dp的全局变量，初始都是dp值，在使用之前会乘上屏幕像素(mDensity)称为px值
  *
  * @author Relish Wang
- * @since 2017/08/02
+ * @since 2017/08/m02
  */
 public class ColorPickerView extends View {
 
