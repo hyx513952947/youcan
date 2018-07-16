@@ -90,5 +90,47 @@ public class FileUtil {
         }
         return null;
     }
+    /**
+     * 录音
+     */
+    public static File getRecordFile(String name){
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File filePath = new File(Environment.getExternalStorageDirectory().getPath()+FILENAME+"/records/");
+            if (!filePath.exists()){
+                filePath.mkdirs();
+            }
+            File fileCreated = new File(Environment.getExternalStorageDirectory().getPath()+FILENAME+"/records",name);
+            if (!fileCreated.exists()){
+                try {
+                    fileCreated.createNewFile();
+                } catch (IOException e) {
+                    return null;
+                }
+            }
+            return fileCreated;
+        }
+        return null;
+    }
 
+    /**
+     * 录音的PCM缓存列表
+     */
+    public static File getRecordCacheFile(String name){
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+            File filePath = new File(Environment.getExternalStorageDirectory().getPath()+FILENAME+"/records/cache/");
+            if (!filePath.exists()){
+                filePath.mkdirs();
+            }
+            File fileCreated = new File(Environment.getExternalStorageDirectory().getPath()+FILENAME+"/records/cache",name);
+            if (!fileCreated.exists()){
+                try {
+                    fileCreated.createNewFile();
+                } catch (IOException e) {
+                    return null;
+                }
+            }
+            return fileCreated;
+        }
+        return null;
+    }
 }

@@ -43,8 +43,11 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 import top.huangguaniu.youcan.R;
+import top.huangguaniu.youcan.components.media.AudioRecorder;
+import top.huangguaniu.youcan.components.media.AudioTrackPlayer;
 import top.huangguaniu.youcan.components.media.FileIo;
 import top.huangguaniu.youcan.components.media.FileUtil;
+import top.huangguaniu.youcan.components.media.RecordManager;
 import top.huangguaniu.youcan.data.Depository;
 import top.huangguaniu.youcan.ui.main.dialogs.LabelManageDialog;
 import top.huangguaniu.youcan.ui.main.dialogs.SelectImageDialog;
@@ -247,5 +250,42 @@ public class DiaryEditorFragment extends DaggerFragment {
     @OnClick(R.id.imageView_textSize)
     public void ontextSized() {
         scrollView.fullScroll(ScrollView.FOCUS_DOWN);
+    }
+    private RecordManager recordManager;
+    @NeedsPermission(Manifest.permission.RECORD_AUDIO)
+    void onRecord() {
+        if (recordManager ==null){
+            recordManager = new AudioRecorder();
+            ((AudioRecorder) recordManager).setOnRecordStateListener(new AudioRecorder.OnRecordStateListener() {
+                @Override
+                public void onInitErr() {
+
+                }
+
+                @Override
+                public void onFinish(String fileWav) {
+
+                }
+
+                @Override
+                public void onFinishPcm(String filePcm) {
+                    AudioTrackPlayer audioTrackPlayer = AudioTrackPlayer.newInstance();
+                    audioTrackPlayer.prepare(new File(filePcm));
+                    audioTrackPlayer.play();
+                }
+            });
+        }
+        SelectItemDialog selectItemDialog = SelectItemDialog.newInstance("选择录音",new String[]{
+                "开始录音","暂停录音","停止录音","取消录音"
+        });
+        selectItemDialog.setOnChoiceDialogListener(position -> {
+            recordManager.onStateChange(position);
+        });
+        selectItemDialog.show(getChildFragmentManager(),"record");
+    }
+
+    @OnClick(R.id.imageView_voice)
+    public void onVoiceViewClicked() {
+        DiaryEditorFragmentPermissionsDispatcher.onRecordWithPermissionCheck(this);
     }
 }
