@@ -10,6 +10,8 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 
+import top.huangguaniu.youcan.ui.main.views.Logger;
+
 /**
  * Created by 侯延旭 on 2018/7/16.
  */
@@ -44,7 +46,7 @@ public class AudioTrackPlayer implements AudioPlayer {
     }
 
     boolean mIsPlaying;
-
+    int STATE;//0 playing ;1 pause;2 stop
     @Override
     public void play() {
         if (filePcm == null) {
@@ -64,6 +66,7 @@ public class AudioTrackPlayer implements AudioPlayer {
                     }
                     audioTrack.write(buffer, 0, buffer.length);
                 }
+                audioTrack.stop();
                 dis.close();
             } catch (Exception e) {
                 Log.e("slack", "error:" + e.getMessage());
@@ -77,18 +80,15 @@ public class AudioTrackPlayer implements AudioPlayer {
         audioTrack.stop();
         audioTrack.release();
     }
-
     @Override
     public void pause() {
-        mIsPlaying = false;
+        Logger.i("暂停");
         audioTrack.pause();
     }
 
     @Override
     public void rePlay() {
         mIsPlaying = true;
-        if (audioTrack.getPlayState() == AudioTrack.PLAYSTATE_PAUSED){
-
-        }
+        audioTrack.play();
     }
 }

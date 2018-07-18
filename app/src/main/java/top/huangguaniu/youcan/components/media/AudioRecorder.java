@@ -36,15 +36,15 @@ import top.huangguaniu.youcan.ui.main.views.Logger;
 public class AudioRecorder implements RecordManager {
     private static AudioRecorder audioRecorder;
     // 音频源：音频输入-麦克风
-    private final static int AUDIO_INPUT = MediaRecorder.AudioSource.MIC;
+    private final int AUDIO_INPUT = MediaRecorder.AudioSource.MIC;
     // 采样率
     // 44100是目前的标准，但是某些设备仍然支持22050，16000，11025
     // 采样频率一般共分为22.05KHz、44.1KHz、48KHz三个等级
-    private final static int AUDIO_SAMPLE_RATE = 44100;
+    private final int AUDIO_SAMPLE_RATE = 44100;
     // 音频通道 单声道
-    private final static int AUDIO_CHANNEL = AudioFormat.CHANNEL_IN_MONO;
+    private final int AUDIO_CHANNEL = AudioFormat.CHANNEL_IN_MONO;
     // 音频格式：PCM编码
-    private final static int AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
+    private final int AUDIO_ENCODING = AudioFormat.ENCODING_PCM_16BIT;
     // 缓冲区大小：缓冲区字节大小
     private int bufferSizeInBytes = 0;
     private AudioRecord audioRecord;
@@ -78,13 +78,9 @@ public class AudioRecorder implements RecordManager {
 
 
     private void bigTolittle(String fileName,String target) throws IOException {
-
-        File file = new File(fileName);    //filename为pcm文件，请自行设置
-
-        InputStream in = null;
-        byte[] bytes = null;
-        in = new FileInputStream(file);
-        bytes = new byte[in.available()];//in.available()是得到文件的字节数
+        File file = new File(fileName);
+        InputStream in = new FileInputStream(file);
+        byte[] bytes = new byte[in.available()];//in.available()是得到文件的字节数
         int length=bytes.length;
         while (length!=1){
             long i=  in.read(bytes,0,bytes.length);
@@ -103,10 +99,13 @@ public class AudioRecorder implements RecordManager {
         FileOutputStream fos1 = new FileOutputStream(file1);
         BufferedOutputStream bos1 = new BufferedOutputStream(fos1);
         DataOutputStream dos1 = new DataOutputStream(bos1);
-        for (int i = 0; i < shorts.length; i++) {
-            dos1.writeShort(shorts[i]);
+        for (short aShort : shorts) {
+            dos1.writeShort(aShort);
         }
         dos1.close();
+        in.close();
+        fos1.close();
+        bos1.close();
     }
 
 
@@ -193,6 +192,8 @@ public class AudioRecorder implements RecordManager {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
+            } catch (NullPointerException e){
+
             }
         };
         executorService.execute(runnable);

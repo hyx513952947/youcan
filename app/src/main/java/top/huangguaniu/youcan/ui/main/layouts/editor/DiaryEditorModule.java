@@ -1,4 +1,4 @@
-package top.huangguaniu.youcan.ui.main;
+package top.huangguaniu.youcan.ui.main.layouts.editor;
 
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
@@ -12,4 +12,5 @@ public abstract class DiaryEditorModule {
     @FragmentScoped
     @ContributesAndroidInjector
     abstract DiaryEditorFragment diaryEditorFragment();
+
 }

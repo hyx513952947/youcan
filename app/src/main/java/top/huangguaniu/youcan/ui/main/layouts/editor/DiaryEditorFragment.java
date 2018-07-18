@@ -1,4 +1,4 @@
-package top.huangguaniu.youcan.ui.main;
+package top.huangguaniu.youcan.ui.main.layouts.editor;
 
 
 import android.Manifest;
@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
@@ -17,23 +16,17 @@ import android.view.ViewGroup;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import com.amap.api.location.AMapLocation;
-import com.amap.api.location.AMapLocationClient;
-import com.amap.api.location.AMapLocationClientOption;
-import com.amap.api.location.AMapLocationListener;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.io.File;
-import java.util.Objects;
 
 import javax.inject.Inject;
 
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
-import dagger.android.support.DaggerFragment;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
@@ -43,12 +36,13 @@ import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 import top.huangguaniu.youcan.R;
-import top.huangguaniu.youcan.components.media.AudioRecorder;
-import top.huangguaniu.youcan.components.media.AudioTrackPlayer;
+import top.huangguaniu.youcan.components.location.LocationEvent;
+import top.huangguaniu.youcan.components.location.LocationManager;
 import top.huangguaniu.youcan.components.media.FileIo;
 import top.huangguaniu.youcan.components.media.FileUtil;
 import top.huangguaniu.youcan.components.media.RecordManager;
 import top.huangguaniu.youcan.data.Depository;
+import top.huangguaniu.youcan.ui.BaseFragment;
 import top.huangguaniu.youcan.ui.main.dialogs.LabelManageDialog;
 import top.huangguaniu.youcan.ui.main.dialogs.SelectImageDialog;
 import top.huangguaniu.youcan.ui.main.dialogs.SelectItemDialog;
@@ -65,7 +59,7 @@ import top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup;
  * @author css
  */
 @RuntimePermissions
-public class DiaryEditorFragment extends DaggerFragment {
+public class DiaryEditorFragment extends BaseFragment<DiaryEditorPresenter> implements DiaryEditorConstract.View {
 
     Unbinder unbinder;
     @BindView(R.id.layout_label_select)
@@ -76,33 +70,13 @@ public class DiaryEditorFragment extends DaggerFragment {
     @BindView(R.id.scrollView)
     NestedScrollView scrollView;
 
-    private AMapLocationClient mLocationClient = null;
-    private AMapLocationClientOption mLocationOption = null;
+    LocationManager locationManager;
 
     @Inject
     Depository depository;
 
-    AMapLocationListener mLocationListener = new AMapLocationListener() {
-        @Override
-        public void onLocationChanged(AMapLocation aMapLocation) {
-            if (aMapLocation.getErrorCode() == 0) {
-                Label label = labelManager.createDeletableLabel("地点");
-                label.setTitle(aMapLocation.getCity());
-                layoutLabelSelect.addView(label);
-                Disposable disposable = depository.queryWeather(aMapLocation.getCity())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribeOn(Schedulers.io())
-                        .subscribe(bean -> {
-                            Label labelWeather = labelManager.createDeletableLabel("天气");
-                            labelWeather.setTitle(bean.getData().getForecast().get(0).getType());
-                            layoutLabelSelect.addView(labelWeather);
-                        });
-            }
-        }
-    };
-
-
     private LabelViewGroup.OnLabelStateListener selectedLabelListener = (label, isRemoved, isTouched) -> {
+
     };
 
     private LabelViewGroup.OnLabelStateListener allLabelListener = new LabelViewGroup.OnLabelStateListener() {
@@ -113,6 +87,22 @@ public class DiaryEditorFragment extends DaggerFragment {
         }
     };
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onLocationEvent(LocationEvent event) {
+        Label label = labelManager.createDeletableLabel("地点");
+        label.setTitle(event.getaMapLocation().getCity());
+        layoutLabelSelect.addView(label);
+
+        Disposable disposable = depository.queryWeather(event.getaMapLocation().getCity())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(bean -> {
+                    Label labelWeather = labelManager.createDeletableLabel("天气");
+                    labelWeather.setTitle(bean.getData().getForecast().get(0).getType());
+                    layoutLabelSelect.addView(labelWeather);
+                });
+    }
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -122,8 +112,7 @@ public class DiaryEditorFragment extends DaggerFragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
+    protected void onViewCreate(View root) {
         labelManager = LabelManager.newInstance(getContext());
         for (Label label : labelManager.getSelectableLabel()) {
             layoutLabelAll.addView(label);
@@ -133,17 +122,8 @@ public class DiaryEditorFragment extends DaggerFragment {
         DiaryEditorFragmentPermissionsDispatcher.needLocationPermissionWithPermissionCheck(this);
     }
 
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
-        mLocationClient.unRegisterLocationListener(mLocationListener);
-    }
-
     @OnClick(R.id.appCompatImageView_back)
     public void onAppCompatImageViewBackClicked() {
-        NavController controller = Navigation.findNavController(Objects.requireNonNull(getView()));
 
     }
 
@@ -161,13 +141,8 @@ public class DiaryEditorFragment extends DaggerFragment {
 
     @NeedsPermission({Manifest.permission.INTERNET, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     void needLocationPermission() {
-        mLocationClient = new AMapLocationClient(getContext());
-        mLocationClient.setLocationListener(mLocationListener);
-        mLocationOption = new AMapLocationClientOption();
-        mLocationOption.setLocationCacheEnable(true);
-        mLocationOption.setOnceLocation(true);
-        mLocationClient.setLocationOption(mLocationOption);
-        mLocationClient.startLocation();
+        locationManager = LocationManager.newInstance(getContext());
+        locationManager.startLocation();
     }
 
     @OnShowRationale({Manifest.permission.INTERNET, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
@@ -254,34 +229,6 @@ public class DiaryEditorFragment extends DaggerFragment {
     private RecordManager recordManager;
     @NeedsPermission(Manifest.permission.RECORD_AUDIO)
     void onRecord() {
-        if (recordManager ==null){
-            recordManager = new AudioRecorder();
-            ((AudioRecorder) recordManager).setOnRecordStateListener(new AudioRecorder.OnRecordStateListener() {
-                @Override
-                public void onInitErr() {
-
-                }
-
-                @Override
-                public void onFinish(String fileWav) {
-
-                }
-
-                @Override
-                public void onFinishPcm(String filePcm) {
-                    AudioTrackPlayer audioTrackPlayer = AudioTrackPlayer.newInstance();
-                    audioTrackPlayer.prepare(new File(filePcm));
-                    audioTrackPlayer.play();
-                }
-            });
-        }
-        SelectItemDialog selectItemDialog = SelectItemDialog.newInstance("选择录音",new String[]{
-                "开始录音","暂停录音","停止录音","取消录音"
-        });
-        selectItemDialog.setOnChoiceDialogListener(position -> {
-            recordManager.onStateChange(position);
-        });
-        selectItemDialog.show(getChildFragmentManager(),"record");
     }
 
     @OnClick(R.id.imageView_voice)

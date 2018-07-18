@@ -3,7 +3,7 @@ package top.huangguaniu.youcan.di;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 import top.huangguaniu.youcan.ui.main.MainActivity;
-import top.huangguaniu.youcan.ui.main.DiaryEditorModule;
+import top.huangguaniu.youcan.ui.main.layouts.editor.DiaryEditorModule;
 import top.huangguaniu.youcan.ui.main.HomeModule;
 import top.huangguaniu.youcan.ui.main.draw.DrawViewActivity;
 

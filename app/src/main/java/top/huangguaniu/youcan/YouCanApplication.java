@@ -2,6 +2,7 @@ package top.huangguaniu.youcan;
 
 import android.os.Build;
 import android.os.StrictMode;
+
 import dagger.android.AndroidInjector;
 import dagger.android.DaggerApplication;
 import top.huangguaniu.youcan.di.DaggerAppComponent;

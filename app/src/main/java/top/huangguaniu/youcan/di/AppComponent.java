@@ -6,11 +6,10 @@ import javax.inject.Singleton;
 
 import dagger.BindsInstance;
 import dagger.Component;
-import dagger.Subcomponent;
 import dagger.android.AndroidInjector;
 import dagger.android.support.AndroidSupportInjectionModule;
 import top.huangguaniu.youcan.YouCanApplication;
-import top.huangguaniu.youcan.ui.main.DiaryEditorModule;
+import top.huangguaniu.youcan.ui.main.layouts.editor.DiaryEditorModule;
 import top.huangguaniu.youcan.ui.main.HomeModule;
 
 @Singleton
