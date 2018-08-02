@@ -1,24 +1,17 @@
-package top.huangguaniu.youcan.ui.main.dialogs;
+package top.huangguaniu.youcan.ui.editor.dialogs;
 
 import android.app.Dialog;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.AppCompatEditText;
-import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.zip.Inflater;
-
 import top.huangguaniu.youcan.R;
-import top.huangguaniu.youcan.ui.main.views.EditorEditTextView;
 import top.huangguaniu.youcan.ui.main.views.HappyToast;
-import top.huangguaniu.youcan.ui.main.views.Logger;
 import top.huangguaniu.youcan.ui.main.views.labels.Label;
 import top.huangguaniu.youcan.ui.main.views.labels.LabelManager;
 import top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup;

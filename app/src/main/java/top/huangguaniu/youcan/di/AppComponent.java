@@ -17,6 +17,7 @@ import top.huangguaniu.youcan.ui.main.HomeModule;
         DiaryEditorModule.class,
         AppModule.class,
         HomeModule.class,
+        PresenterModule.class,
         ActivityBindingModule.class,
         AndroidSupportInjectionModule.class})
 public interface AppComponent extends AndroidInjector<YouCanApplication> {

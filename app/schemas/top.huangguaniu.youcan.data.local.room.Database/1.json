@@ -2,10 +2,10 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "70b0f10eca83b84ef94db9505d89a876",
+    "identityHash": "3d246f2cabe4d60254901470efb80548",
     "entities": [
       {
-        "tableName": "LocalInfoEntity",
+        "tableName": "local",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER, `time` INTEGER NOT NULL, `info` TEXT, `city` TEXT, PRIMARY KEY(`id`))",
         "fields": [
           {
@@ -45,7 +45,7 @@
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"70b0f10eca83b84ef94db9505d89a876\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"3d246f2cabe4d60254901470efb80548\")"
     ]
   }
 }

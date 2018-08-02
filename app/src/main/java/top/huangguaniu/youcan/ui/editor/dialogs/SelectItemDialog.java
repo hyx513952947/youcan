@@ -1,4 +1,4 @@
-package top.huangguaniu.youcan.ui.main.dialogs;
+package top.huangguaniu.youcan.ui.editor.dialogs;
 
 import android.app.Dialog;
 import android.os.Bundle;

@@ -12,8 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import javax.inject.Inject;
-
 import androidx.navigation.NavController;
 import androidx.navigation.fragment.NavHostFragment;
 import butterknife.BindView;
@@ -24,8 +22,6 @@ import dagger.android.support.DaggerFragment;
 import top.huangguaniu.youcan.R;
 import top.huangguaniu.youcan.components.glide.GlideApp;
 import top.huangguaniu.youcan.components.glide.GlideRoundDrawableTransform;
-import top.huangguaniu.youcan.data.Depository;
-import top.huangguaniu.youcan.data.remote.Api;
 import top.huangguaniu.youcan.ui.main.views.Logger;
 
 /**

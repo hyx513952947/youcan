@@ -3,7 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tool="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    app:startDestination="@id/fragment_diary">
+    app:startDestination="@id/fragment_home">
     <fragment
         tool:layout= "@layout/fragment_home"
         android:label="home"

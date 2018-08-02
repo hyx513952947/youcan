@@ -7,7 +7,7 @@ import top.huangguaniu.youcan.data.Depository;
 /**
  * Created by 侯延旭 on 2018/7/18.
  */
-public class DiaryEditorPresenter implements DiaryEditorConstract.Presenter<DiaryEditorConstract.View> {
+public class DiaryEditorPresenter implements DiaryEditorConstract.Presenter{
     private Depository depository;
     private DiaryEditorConstract.View view;
     @Inject
@@ -15,13 +15,4 @@ public class DiaryEditorPresenter implements DiaryEditorConstract.Presenter<Diar
         this.depository = depository;
     }
 
-    @Override
-    public void setView(DiaryEditorConstract.View view) {
-        this.view = view;
-    }
-
-    @Override
-    public void release() {
-        
-    }
 }

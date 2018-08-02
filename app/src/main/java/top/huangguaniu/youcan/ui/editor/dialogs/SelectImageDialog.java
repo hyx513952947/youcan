@@ -1,4 +1,4 @@
-package top.huangguaniu.youcan.ui.main.dialogs;
+package top.huangguaniu.youcan.ui.editor.dialogs;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -31,8 +31,8 @@ import top.huangguaniu.youcan.R;
 import top.huangguaniu.youcan.components.UriPraseUtil;
 import top.huangguaniu.youcan.components.media.FileUtil;
 import top.huangguaniu.youcan.components.media.ImagePicker;
-import top.huangguaniu.youcan.ui.main.dialogs.select.RecycleViewDivider;
-import top.huangguaniu.youcan.ui.main.dialogs.select.SelectImageAdapter;
+import top.huangguaniu.youcan.ui.editor.dialogs.select.RecycleViewDivider;
+import top.huangguaniu.youcan.ui.editor.dialogs.select.SelectImageAdapter;
 import top.huangguaniu.youcan.ui.main.views.HappyToast;
 
 /**

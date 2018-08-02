@@ -43,9 +43,9 @@ import top.huangguaniu.youcan.components.media.FileUtil;
 import top.huangguaniu.youcan.components.media.RecordManager;
 import top.huangguaniu.youcan.data.Depository;
 import top.huangguaniu.youcan.ui.BaseFragment;
-import top.huangguaniu.youcan.ui.main.dialogs.LabelManageDialog;
-import top.huangguaniu.youcan.ui.main.dialogs.SelectImageDialog;
-import top.huangguaniu.youcan.ui.main.dialogs.SelectItemDialog;
+import top.huangguaniu.youcan.ui.editor.dialogs.LabelManageDialog;
+import top.huangguaniu.youcan.ui.editor.dialogs.SelectImageDialog;
+import top.huangguaniu.youcan.ui.editor.dialogs.SelectItemDialog;
 import top.huangguaniu.youcan.ui.main.draw.DrawViewActivity;
 import top.huangguaniu.youcan.ui.main.views.HappyToast;
 import top.huangguaniu.youcan.ui.main.views.Logger;
@@ -59,7 +59,7 @@ import top.huangguaniu.youcan.ui.main.views.labels.LabelViewGroup;
  * @author css
  */
 @RuntimePermissions
-public class DiaryEditorFragment extends BaseFragment<DiaryEditorPresenter> implements DiaryEditorConstract.View {
+public class DiaryEditorFragment extends BaseFragment implements DiaryEditorConstract.View {
 
     Unbinder unbinder;
     @BindView(R.id.layout_label_select)
@@ -119,7 +119,6 @@ public class DiaryEditorFragment extends BaseFragment<DiaryEditorPresenter> impl
         }
         layoutLabelAll.setOnLabelStateListener(allLabelListener);
         layoutLabelSelect.setOnLabelStateListener(selectedLabelListener);
-        DiaryEditorFragmentPermissionsDispatcher.needLocationPermissionWithPermissionCheck(this);
     }
 
     @OnClick(R.id.appCompatImageView_back)
@@ -133,11 +132,6 @@ public class DiaryEditorFragment extends BaseFragment<DiaryEditorPresenter> impl
         labelManageDialog.show(getChildFragmentManager(), "labels");
     }
 
-    @Override
-    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        DiaryEditorFragmentPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
-    }
 
     @NeedsPermission({Manifest.permission.INTERNET, Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE})
     void needLocationPermission() {
@@ -233,6 +227,5 @@ public class DiaryEditorFragment extends BaseFragment<DiaryEditorPresenter> impl
 
     @OnClick(R.id.imageView_voice)
     public void onVoiceViewClicked() {
-        DiaryEditorFragmentPermissionsDispatcher.onRecordWithPermissionCheck(this);
     }
 }

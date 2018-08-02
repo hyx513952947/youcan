@@ -7,10 +7,10 @@ import top.huangguaniu.youcan.components.constracts.BaseView;
  * Created by 侯延旭 on 2018/7/18.
  */
 public interface DiaryEditorConstract {
-    interface View extends BaseView<DiaryEditorPresenter>{
+    interface View extends BaseView{
 
     }
-    interface Presenter<V extends BaseView<DiaryEditorPresenter>> extends BasePresenter<View> {
+    interface Presenter extends BasePresenter{
     }
 
 }

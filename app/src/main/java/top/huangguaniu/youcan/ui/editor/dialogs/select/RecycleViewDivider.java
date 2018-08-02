@@ -1,4 +1,4 @@
-package top.huangguaniu.youcan.ui.main.dialogs.select;
+package top.huangguaniu.youcan.ui.editor.dialogs.select;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -10,7 +10,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.LinearLayout;
 
 /**
  * Created by 侯延旭 on 2018/7/12.

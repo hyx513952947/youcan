@@ -7,13 +7,10 @@ import android.view.ViewGroup;
 
 import org.greenrobot.eventbus.EventBus;
 
-import javax.inject.Inject;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import dagger.android.support.DaggerFragment;
-import top.huangguaniu.youcan.components.constracts.BasePresenter;
-import top.huangguaniu.youcan.components.constracts.BaseView;
+import top.huangguaniu.youcan.R;
 
 /**
  *
@@ -21,7 +18,7 @@ import top.huangguaniu.youcan.components.constracts.BaseView;
  * @date 18-1-16
  */
 
-public abstract class BaseFragment<R extends BasePresenter> extends DaggerFragment implements BaseView<R> {
+public abstract class BaseFragment extends DaggerFragment {
 
     Unbinder unbinder;
     R presenter;
@@ -49,22 +46,11 @@ public abstract class BaseFragment<R extends BasePresenter> extends DaggerFragme
     }
 
     @Override
-    @Inject
-    public void setUpPresenter(R r) {
-        this.presenter = r;
-        presenter.setView(this);
-    }
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
-        getPresenter().release();
     }
 
     protected abstract void onViewCreate(View root);
 
-    @Override
-    public R getPresenter() {
-        return presenter;
-    }
 }

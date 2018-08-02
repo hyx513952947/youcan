@@ -8,8 +8,6 @@ import io.reactivex.disposables.CompositeDisposable;
  * @date 18-1-15
  */
 
-public interface BasePresenter<R extends BaseView> {
-    void setView(R r);
-    void release();
+public interface BasePresenter {
     CompositeDisposable rxTask = new CompositeDisposable();
 }

@@ -1,19 +1,20 @@
 package top.huangguaniu.youcan.ui.main;
 
 import android.Manifest;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.util.Log;
 import android.view.View;
+
+import javax.inject.Inject;
+
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import dagger.android.support.DaggerAppCompatActivity;
 import permissions.dispatcher.NeedsPermission;
 import permissions.dispatcher.OnShowRationale;
 import permissions.dispatcher.PermissionRequest;
 import permissions.dispatcher.RuntimePermissions;
 import top.huangguaniu.youcan.R;
+import top.huangguaniu.youcan.ui.BaseActivity;
+import top.huangguaniu.youcan.ui.Layout;
 import top.huangguaniu.youcan.ui.main.views.DragRightFrameLayout;
 import top.huangguaniu.youcan.ui.main.views.Logger;
 import top.huangguaniu.youcan.ui.main.views.MenuButton;
@@ -23,7 +24,9 @@ import top.huangguaniu.youcan.ui.main.views.MenuLayout;
  * @author hyx
  */
 @RuntimePermissions
-public class MainActivity extends DaggerAppCompatActivity implements MenuLayout.OnMenuItemClickListener {
+@Layout(layout = R.layout.main_activity)
+public class MainActivity extends BaseActivity implements MenuLayout.OnMenuItemClickListener
+        ,MainActivityContract.View {
     @BindView(R.id.button_menu_closed)
     MenuButton buttonMenuClosed;
     @BindView(R.id.layout_menu)
@@ -32,16 +35,17 @@ public class MainActivity extends DaggerAppCompatActivity implements MenuLayout.
     DragRightFrameLayout layoutDrag;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_activity);
-        ButterKnife.bind(this);
+    protected void onLayoutInit() {
         layoutMenu.setOnMenuItemClickListener(this);
+    }
+
+    @Inject
+    protected void injectPresenter(MainActivityContract.Presenter presenter) {
+        Logger.i("啊哈哈的好哇"+presenter.toString());
     }
 
     @Override
     public void onItemClick(View v) {
-        Log.i("菜单点击：", "id:" + v.getId());
         layoutDrag.closeMenu();
     }
 
@@ -49,7 +53,6 @@ public class MainActivity extends DaggerAppCompatActivity implements MenuLayout.
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[]
             grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        MainActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
     }
 
     @OnClick(R.id.button_menu_closed)
