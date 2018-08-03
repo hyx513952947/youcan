@@ -94,14 +94,16 @@
             app:title="个人设置"
             app:unSelectDrawable="@drawable/icon_set_unselected" />
     </top.huangguaniu.youcan.ui.main.views.MenuLayout>
-
-    <fragment
-        android:id="@+id/container"
-        android:name="androidx.navigation.fragment.NavHostFragment"
+    <RelativeLayout
+        android:id="@+id/layout_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:layout_constraintStart_toStartOf="parent"
-        app:navGraph="@navigation/main_navogation" />
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/layout_foot"
+            android:gravity="end"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        </RelativeLayout>
+    </RelativeLayout>
 </top.huangguaniu.youcan.ui.main.views.DragRightFrameLayout>
 
